@@ -305,43 +305,6 @@ public class Registro {
         if (!encontrado) {
             JOptionPane.showMessageDialog(null, "No se encontró un alumno con el usuario proporcionado.");
         } 
-    }
-    
-    public void informacionAdicionalPadre(){
-       PadreEncargado encargado = new PadreEncargado();
-       if (cantidadActual == 0) {
-        JOptionPane.showMessageDialog(null, "No hay alumnos registrados para añadir información adicional del padre.");
-        return;
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < cantidadActual; i++) {
-            sb.append((i + 1)).append(". ").append(datos[i].getNombre())
-              .append(" ").append(datos[i].getApellido()).append("\n");
-        }
-        String nickname = JOptionPane.showInputDialog(null,
-            "*** Información Adicional del Padre ***\n\n" +
-            "Seleccione el nickname del alumno para añadir la información del padre:\n\n" + sb.toString());
-        Alumnos alumno = null;
-        for (int i = 0; i < cantidadActual; i++) {
-            if (datos[i].getNickname().equals(nickname)) {
-                alumno = datos[i];
-                break;
-            }
-        }
-        if (alumno == null) {
-            JOptionPane.showMessageDialog(null, "Alumno con el nickname '" + nickname + "' no encontrado.");
-            return;
-        }
-        String direccion = JOptionPane.showInputDialog(null, "Ingrese la dirección del padre:");
-        String correo = JOptionPane.showInputDialog(null, "Ingrese el correo del padre:");
-        String idPadre = "PADRE" + (int)(Math.random() * 10000);
-        encargado.setDireccionEncargado(direccion);
-        encargado.setCorreoEncargado(correo);
-        encargado.setId(idPadre); 
-
-        JOptionPane.showMessageDialog(null, "La información adicional del padre ha sido registrada con éxito!"); 
-    }
-    
-    
+    } 
      
 }

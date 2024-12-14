@@ -159,7 +159,7 @@ public class Menu {
                    break;
                 }
                 case 3:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.inactivarAlumno();
                    break;
                 }
                 case 4:{
@@ -185,11 +185,11 @@ public class Menu {
                 "Digite la opción deseada:"));
             switch(opcion){
                 case 1:{
-                   r.informacionAdicionalPadre();
+                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
                    break;
                 }
                 case 2:{
-                   r.editarInformacion();
+                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
                    break;
                 }
                 case 3:{
@@ -219,11 +219,11 @@ public class Menu {
                 "Digite la opción deseada:"));
             switch(opcion){
                 case 1:{
-                   r.informacionAdicional();
+                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
                    break;
                 }
                 case 2:{
-                   r.editarInformacion();
+                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
                    break;
                 }
                 case 3:{
@@ -253,11 +253,11 @@ public class Menu {
                 "Digite la opción deseada:"));
             switch(opcion){
                 case 1:{
-                   r.informacionAdicional();
+                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
                    break;
                 }
                 case 2:{
-                   r.editarInformacion();
+                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
                    break;
                 }
                 case 3:{

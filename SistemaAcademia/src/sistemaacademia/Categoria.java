@@ -30,7 +30,5 @@ public class Categoria {
         return estado;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    } 
+    
 }

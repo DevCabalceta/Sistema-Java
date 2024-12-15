@@ -240,7 +240,7 @@ public class Registro {
                 encontrado = true;
                 Alumnos alumno = datos[i];
                 String nuevoNombre = JOptionPane.showInputDialog(null, 
-                    "Nombre actual: " + alumno.getNombre() + "\nIngrese el nuevo nombre (o deje vacío para no cambiar):");
+                    "Nombre actual: " + alumno.getNombre() + "\nIngrese el nuevo nombre (o deje vacío para no cambiar):, ");
                 String nuevoApellido = JOptionPane.showInputDialog(null, 
                     "Apellido actual: " + alumno.getApellido() + "\nIngrese el nuevo apellido (o deje vacío para no cambiar):");
                 String nuevaEdadStr = JOptionPane.showInputDialog(null, 
@@ -368,7 +368,38 @@ public class Registro {
     }
     
     public void editarInformacionPadre(){
-        
+        if (cantidadActual == 0) {
+            JOptionPane.showMessageDialog(null, "No hay padres registrados.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cantidadActual; i++) {
+            sb.append((i + 1)).append(". ").append(encargados[i].getNombreEncargado())
+              .append(" ").append(encargados[i].getApellidoEncargado()).append("\n");
+        }
+
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(
+            "*** Lista de Padres Registrados ***\n\n" +
+            sb.toString() +
+            "Seleccione el número del padre para editar la información:"));
+
+        if (opcion < 1 || opcion > cantidadActual) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        int indicePadre = opcion - 1;
+        PadreEncargado padre = encargados[indicePadre];
+
+        padre.setNombreEncargado(JOptionPane.showInputDialog("Ingrese el nuevo nombre del padre:", padre.getNombreEncargado()));
+        padre.setApellidoEncargado(JOptionPane.showInputDialog("Ingrese el nuevo apellido del padre:", padre.getApellidoEncargado()));
+        padre.setNumeroTelefonoEncargado(Long.parseLong(JOptionPane.showInputDialog("Ingrese el nuevo número de teléfono:", padre.getNumeroTelefonoEncargado())));
+        padre.setRelacion(JOptionPane.showInputDialog("Ingrese la nueva relación con el alumno:", padre.getRelacion()));
+        padre.setDireccionEncargado(JOptionPane.showInputDialog("Ingrese la nueva direccion del padre:", padre.getDireccionEncargado()));
+        padre.setCorreoEncargado(JOptionPane.showInputDialog("Ingrese la nueva relación con el alumno:", padre.getCorreoEncargado()));
+
+        JOptionPane.showMessageDialog(null, "Información del padre editada con éxito.");
     }
      
 }

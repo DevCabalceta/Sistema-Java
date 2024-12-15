@@ -4,6 +4,7 @@ public class Registro {
     private Alumnos datos[]=new Alumnos[100];
     private PadreEncargado encargados[] = new PadreEncargado[100];
     private Instructores instructores[] = new Instructores[100];
+    private int idPadre = 1;
     private int x;
     private int cantidadActual = 0;
     
@@ -306,5 +307,68 @@ public class Registro {
             JOptionPane.showMessageDialog(null, "No se encontró un alumno con el usuario proporcionado.");
         } 
     } 
+    
+    public void asignarIdPadre(){
+        if (cantidadActual == 0) {
+            JOptionPane.showMessageDialog(null, "No hay padres registrados.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cantidadActual; i++) {
+            sb.append((i + 1)).append(". ").append(encargados[i].getNombreEncargado())
+              .append(" ").append(encargados[i].getApellidoEncargado()).append("\n");
+        }
+
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(
+            "*** Lista de Padres Registrados ***\n\n" +
+            sb.toString() +
+            "Seleccione el número del padre para asignar un ID:"));
+
+        if (opcion < 1 || opcion > cantidadActual) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        int indicePadre = opcion - 1;
+        PadreEncargado padre = encargados[indicePadre];
+        padre.setId(idPadre++);
+        JOptionPane.showMessageDialog(null, "ID asignado al padre " + padre.getNombreEncargado() + " con éxito. ID: " + padre.getId());
+    }
+    
+    public void agregarInformacionAdicional(){
+        if (cantidadActual == 0) {
+            JOptionPane.showMessageDialog(null, "No hay padres registrados.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cantidadActual; i++) {
+            sb.append((i + 1)).append(". ").append(encargados[i].getNombreEncargado())
+              .append(" ").append(encargados[i].getApellidoEncargado()).append("\n");
+        }
+
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(
+            "*** Lista de Padres Registrados ***\n\n" +
+            sb.toString() +
+            "Seleccione el número del padre para agregar información adicional:"));
+
+        if (opcion < 1 || opcion > cantidadActual) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        int indicePadre = opcion - 1;
+        PadreEncargado padre = encargados[indicePadre];
+
+        padre.setDireccionEncargado(JOptionPane.showInputDialog("Ingrese la dirección:"));
+        padre.setCorreoEncargado(JOptionPane.showInputDialog("Ingrese el correo:"));
+
+        JOptionPane.showMessageDialog(null, "Información adicional agregada con éxito.");
+    }
+    
+    public void editarInformacionPadre(){
+        
+    }
      
 }

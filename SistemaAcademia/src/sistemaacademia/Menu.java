@@ -178,22 +178,22 @@ public class Menu {
         while(true){
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                 "*** Catálogo de Padres de Familia ***\n\n" +
-                "1. Agregar Informacion adicional del Alumno\n" +
-                "2. Editar informacion del Alumno\n" +
-                "3. Inactivar Alumno\n" +
+                "1. Asignar Id a padre\n" +
+                "2. Agregar Información adicional\n" +
+                "3. Editar informacion\n" +
                 "4. Volver al Menú de Catálogos\n\n" +
                 "Digite la opción deseada:"));
             switch(opcion){
                 case 1:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.asignarIdPadre();
                    break;
                 }
                 case 2:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.agregarInformacionAdicional();
                    break;
                 }
                 case 3:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.editarInformacionPadre();
                    break;
                 }
                 case 4:{
@@ -212,9 +212,9 @@ public class Menu {
         while(true){
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                 "*** Catálogo de Instructores ***\n\n" +
-                "1. Agregar Informacion adicional del Alumno\n" +
-                "2. Editar informacion del Alumno\n" +
-                "3. Inactivar Alumno\n" +
+                "1. *****************\n" +
+                "2. *****************\n" +
+                "3. *****************\n" +
                 "4. Volver al Menú de Catálogos\n\n" +
                 "Digite la opción deseada:"));
             switch(opcion){
@@ -246,9 +246,9 @@ public class Menu {
         while(true){
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                 "*** Catálogo de Sedes ***\n\n" +
-                "1. Agregar Informacion adicional del Alumno\n" +
-                "2. Editar informacion del Alumno\n" +
-                "3. Inactivar Alumno\n" +
+                "1. *****************\n" +
+                "2. *****************\n" +
+                "3. *****************\n" +
                 "4. Volver al Menú de Catálogos\n\n" +
                 "Digite la opción deseada:"));
             switch(opcion){

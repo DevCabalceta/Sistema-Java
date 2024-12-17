@@ -9,7 +9,8 @@ public class Alumnos {
     private String estado;
     private String ciudad;       
     private String direccion;    
-    private String correo; 
+    private String correo;
+    private Sede sede;
     
     public Alumnos(String nombre, String apellido, byte edad, String nickname, String password, String estado, String ciudad, String direccion, String correo){
         this.nombre = nombre;
@@ -21,6 +22,7 @@ public class Alumnos {
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.correo = correo;
+        this.sede = sede;
     }
     
     public Alumnos() {
@@ -32,7 +34,8 @@ public class Alumnos {
         this.estado = "";
         this.ciudad = "";       
         this.direccion = "";    
-        this.correo = ""; 
+        this.correo = "";
+        this.sede = null;
     }
 
     public String getNombre() {
@@ -105,6 +108,14 @@ public class Alumnos {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+    
+    public Sede getSede() {
+        return sede;
+    }
+    
+    public void setSede(Sede sede) {
+        this.sede = sede;
     }
 
 }

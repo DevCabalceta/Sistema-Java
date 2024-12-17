@@ -97,82 +97,89 @@ public class Menu {
     }
     
     public void menuCatalogo(){
-        while(true){
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
-                    "*** Módulo de Catálogos ***\n\n" +
-                    "1. Catálogo de Alumnos\n" +
-                    "2. Catálogo de Padres de Familia\n" +
-                    "3. Catálogo de Instructores\n" +
-                    "4. Catálogo de Categorías\n" +
-                    "5. Catálogo de Sedes\n" +
-                    "6. Volver al Menú Principal\n\n" +
-                    "Digite la opción deseada:"));
-            switch(opcion){
-                case 1:{
-                    menuCatalogoAlumno();
-                    break; 
-                }
-                case 2: {
-                    menuCatalogoEncargado();
-                    break; 
-                }
-                case 3: {
-                    JOptionPane.showMessageDialog(null,"Opcion no implementada");
-                    break; 
-                }
-                case 4: {
-                    JOptionPane.showMessageDialog(null,"Opcion no implementada");
-                    break; 
-                }
-                case 5: {
-                    JOptionPane.showMessageDialog(null,"Opcion no implementada");
-                    break; 
-                }
-                case 6: {
-                    JOptionPane.showMessageDialog(null, "Regresando al menú principal.");
-                    return;
-                }
-                default:{
-                    JOptionPane.showMessageDialog(null,"¡Opción incorrecta, digite nuevamente!");
-                    break;
-                }
+        while(true) {
+        opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
+                "*** Módulo de Catálogos ***\n\n" +
+                "1. Catálogo de Alumnos\n" +
+                "2. Catálogo de Padres de Familia\n" +
+                "3. Catálogo de Instructores\n" +
+                "4. Catálogo de Categorías\n" +
+                "5. Catálogo de Sedes\n" +
+                "6. Volver al Menú Principal\n\n" +
+                "Digite la opción deseada:"));
+
+        switch(opcion) {
+            case 1: {
+                menuCatalogoAlumno();
+                break;
+            }
+            case 2: {
+                menuCatalogoEncargado();
+                break;
+            }
+            case 3: {
+                menuCatalogoInstructor();
+                break;
+            }
+            case 4: {
+                JOptionPane.showMessageDialog(null,"Opción no implementada");
+                break;
+            }
+            case 5: {
+                menuCatalogoSede();
+                break;
+            }
+            case 6: {
+                JOptionPane.showMessageDialog(null, "Regresando al menú principal.");
+                return;
+            }
+            default: {
+                JOptionPane.showMessageDialog(null,"¡Opción incorrecta, digite nuevamente!");
+                break;
             }
         }
     }
+}
     
     public void menuCatalogoAlumno(){
-        while(true){
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(
-                "*** Catálogo de Alumnos ***\n\n" +
-                "1. Agregar Informacion adicional del Alumno\n" +
-                "2. Editar informacion del Alumno\n" +
-                "3. Inactivar Alumno\n" +
-                "4. Volver al Menú de Catálogos\n\n" +
-                "Digite la opción deseada:"));
-            switch(opcion){
-                case 1:{
-                   r.informacionAdicional();
-                   break;
-                }
-                case 2:{
-                   r.editarInformacion();
-                   break;
-                }
-                case 3:{
-                   r.inactivarAlumno();
-                   break;
-                }
-                case 4:{
-                   JOptionPane.showMessageDialog(null, "Regresando");
-                   return; 
-                }
-                default:{
-                   JOptionPane.showMessageDialog(null,"¡Opción incorrecta, digite nuevamente!");
-                   break; 
-                }
+    while(true){
+        opcion = Integer.parseInt(JOptionPane.showInputDialog(
+            "*** Catálogo de Alumnos ***\n\n" +
+            "1. Agregar Información adicional del Alumno\n" +
+            "2. Editar información del Alumno\n" +
+            "3. Inactivar Alumno\n" +
+            "4. Asignar Sede al Alumno\n" +  
+            "5. Volver al Menú de Catálogos\n\n" +
+            "Digite la opción deseada:"));
+        switch(opcion){
+            case 1: {
+                r.informacionAdicional();
+                break;
+            }
+            case 2: {
+                r.editarInformacion();
+                break;
+            }
+            case 3: {
+                r.inactivarAlumno();
+                break;
+            }
+            case 4: {  
+                r.asignarSedeAAlumno();
+                break;
+            }
+            case 5: {
+                JOptionPane.showMessageDialog(null, "Regresando");
+                return; 
+            }
+            default: {
+                JOptionPane.showMessageDialog(null,"¡Opción incorrecta, digite nuevamente!");
+                break; 
             }
         }
     }
+}
+
     
     public void menuCatalogoEncargado(){
         while(true){
@@ -212,22 +219,22 @@ public class Menu {
         while(true){
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                 "*** Catálogo de Instructores ***\n\n" +
-                "1. *****************\n" +
-                "2. *****************\n" +
-                "3. *****************\n" +
+                "1. Asignar instructor automáticamente\n" +
+                "2. Mostrar lista de instructores\n" +
+                "3. Editar instructor y horario\n" +
                 "4. Volver al Menú de Catálogos\n\n" +
                 "Digite la opción deseada:"));
             switch(opcion){
                 case 1:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.asignarInstructorAutomatico();
                    break;
                 }
                 case 2:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.mostrarListaInstructores();
                    break;
                 }
                 case 3:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
+                   r.editarInstructorYHorario();
                    break;
                 }
                 case 4:{
@@ -239,43 +246,49 @@ public class Menu {
                    break; 
                 }
             }
-        }
-        
+        }  
     }
+    
     public void menuCatalogoSede(){
         while(true){
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                 "*** Catálogo de Sedes ***\n\n" +
-                "1. *****************\n" +
-                "2. *****************\n" +
-                "3. *****************\n" +
-                "4. Volver al Menú de Catálogos\n\n" +
+                "1. Agregar Sede\n" +
+                "2. Mostrar Sedes Registradas\n" +
+                "3. Editar Información de la Sede\n" +
+                "4. Inactivar Sede\n" +
+                "5. Volver al Menú de Catálogos\n\n" +
                 "Digite la opción deseada:"));
+
             switch(opcion){
-                case 1:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
-                   break;
+                case 1: {
+                    r.agregarSede(); 
+                    break;
                 }
-                case 2:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
-                   break;
+                case 2: {
+                    r.mostrarSedes();  
+                    break;
                 }
-                case 3:{
-                   JOptionPane.showMessageDialog(null,"Opcion no implementada");
-                   break;
+                case 3: {
+                    r.editarSede();  
+                    break;
                 }
-                case 4:{
-                   JOptionPane.showMessageDialog(null, "Regresando");
-                   return; 
+                case 4: {
+                    r.inactivarSede();  
+                    break;
                 }
-                default:{
-                   JOptionPane.showMessageDialog(null,"¡Opción incorrecta, digite nuevamente!");
-                   break; 
+                case 5: {
+                    JOptionPane.showMessageDialog(null, "Regresando");
+                    return;
+                }
+                default: {
+                    JOptionPane.showMessageDialog(null, "¡Opción incorrecta, digite nuevamente!");
+                    break;
                 }
             }
         }
-        
     }
+
     
     public void menuFactura(){    
     }

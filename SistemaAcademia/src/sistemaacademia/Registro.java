@@ -7,7 +7,10 @@ public class Registro {
     private int idPadre = 1;
     private int x;
     private int cantidadActual = 0;
-    
+    private Sede[] sedes = new Sede[100];
+    private int cantidadSedes = 0;
+
+   
     public void registrarUsuario(){
         while (true) {
             Alumnos alumno=new Alumnos();
@@ -44,18 +47,18 @@ public class Registro {
         }
     }
     
-    public void mostrarUsuario(){
-        StringBuilder sb = new StringBuilder();
-        boolean hayUsuarios = false;
-        
-        for (int x = 0; x < cantidadActual; x++){   
-          if (datos[x].getEstado().equalsIgnoreCase("Activo")) {
+   public void mostrarUsuario() {
+    StringBuilder sb = new StringBuilder();
+    boolean hayUsuarios = false;
+
+    for (int x = 0; x < cantidadActual; x++) {   
+        if (datos[x].getEstado().equalsIgnoreCase("Activo")) {
             sb.append("Nombre: ").append(datos[x].getNombre())
               .append("\nApellido: ").append(datos[x].getApellido())
               .append("\nEdad: ").append(datos[x].getEdad())
               .append("\nEstado: ").append(datos[x].getEstado())
               .append("\n");
-            
+
             if (encargados[x] != null) {
                 sb.append("*** Información del Padre o Encargado ***")
                   .append("\nNombre: ").append(encargados[x].getNombreEncargado())
@@ -65,25 +68,35 @@ public class Registro {
             } else {
                 sb.append("*** No tiene un padre o encargado registrado ***");
             }
+
             if (instructores[x] != null) {
-                    sb.append("\n*** Información del Instructor ***")
-                      .append("\nNombre: ").append(instructores[x].nombreInstructor)
-                      .append("\nHorario: ").append(instructores[x].horario);
-                } else {
-                    sb.append("\n*** No tiene un instructor asignado ***");
-                }
+                sb.append("\n*** Información del Instructor ***")
+                  .append("\nNombre: ").append(instructores[x].nombreInstructor)
+                  .append("\nHorario: ").append(instructores[x].horario);
+            } else {
+                sb.append("\n*** No tiene un instructor asignado ***");
+            }
+
+            // Mostrar la sede asignada
+            if (datos[x].getSede() != null) {
+                sb.append("\n*** Información de la Sede ***")
+                  .append("\nNombre de la Sede: ").append(datos[x].getSede().getNombre());
+            } else {
+                sb.append("\n*** No tiene una sede asignada ***");
+            }
 
             sb.append("\n\n");
             hayUsuarios = true; 
         }
-      }
-      if (hayUsuarios) {
-        JOptionPane.showMessageDialog(null, "*** Lista de Alumnos Registrados ***\n\n" + sb.toString());
-        } else { 
-          JOptionPane.showMessageDialog(null, "No hay usuarios activos registrados.");
-      }
-        
     }
+    
+    if (hayUsuarios) {
+        JOptionPane.showMessageDialog(null, "*** Lista de Alumnos Registrados ***\n\n" + sb.toString());
+    } else { 
+        JOptionPane.showMessageDialog(null, "No hay usuarios activos registrados.");
+    }
+}
+
     
     public void eliminarUsuario() {
         if (cantidadActual == 0) {
@@ -401,5 +414,197 @@ public class Registro {
 
         JOptionPane.showMessageDialog(null, "Información del padre editada con éxito.");
     }
-     
+    public void agregarSede() {
+        String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la sede:");
+        String direccion = JOptionPane.showInputDialog("Ingrese la dirección de la sede:");
+        String telefono = JOptionPane.showInputDialog("Ingrese el teléfono de la sede:");
+
+        Sede nuevaSede = new Sede(nombre, direccion, telefono);
+        sedes[cantidadSedes] = nuevaSede;
+        cantidadSedes++;
+        JOptionPane.showMessageDialog(null, "Sede registrada con éxito.");
+    }
+    public void mostrarSedes() {
+        if (cantidadSedes == 0) {
+            JOptionPane.showMessageDialog(null, "No hay sedes registradas.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cantidadSedes; i++) {
+            sb.append("Sede ").append(i + 1).append(":\n")
+              .append("Nombre: ").append(sedes[i].getNombre()).append("\n")
+              .append("Dirección: ").append(sedes[i].getDireccion()).append("\n")
+              .append("Teléfono: ").append(sedes[i].getTelefono()).append("\n\n");
+        }
+
+        JOptionPane.showMessageDialog(null, sb.toString());
+    }
+    
+    public void editarSede() {
+        if (cantidadSedes == 0) {
+            JOptionPane.showMessageDialog(null, "No hay sedes registradas para editar.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cantidadSedes; i++) {
+            sb.append(i + 1).append(". ").append(sedes[i].getNombre()).append("\n");
+        }
+
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
+                "*** Lista de Sedes Registradas ***\n\n" + sb.toString() +
+                "Seleccione el número de la sede para editar:"));
+
+        if (opcion < 1 || opcion > cantidadSedes) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        int indiceSede = opcion - 1;
+        Sede sede = sedes[indiceSede];
+
+        String nuevoNombre = JOptionPane.showInputDialog("Ingrese el nuevo nombre de la sede:", sede.getNombre());
+        String nuevaDireccion = JOptionPane.showInputDialog("Ingrese la nueva dirección de la sede:", sede.getDireccion());
+        String nuevoTelefono = JOptionPane.showInputDialog("Ingrese el nuevo teléfono de la sede:", sede.getTelefono());
+
+        sede.setNombre(nuevoNombre);
+        sede.setDireccion(nuevaDireccion);
+        sede.setTelefono(nuevoTelefono);
+
+        JOptionPane.showMessageDialog(null, "La información de la sede ha sido actualizada.");
+    }
+        public void inactivarSede() {
+        if (cantidadSedes == 0) {
+            JOptionPane.showMessageDialog(null, "No hay sedes registradas para inactivar.");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cantidadSedes; i++) {
+            sb.append(i + 1).append(". ").append(sedes[i].getNombre()).append("\n");
+        }
+
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
+                "*** Lista de Sedes Registradas ***\n\n" + sb.toString() +
+                "Seleccione el número de la sede para inactivar:"));
+
+        if (opcion < 1 || opcion > cantidadSedes) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        int indiceSede = opcion - 1;
+        sedes[indiceSede] = null;
+
+        JOptionPane.showMessageDialog(null, "Sede inactivada correctamente.");
+    }
+        
+    public void asignarSedeAAlumno() {
+        if (cantidadSedes == 0) {
+            JOptionPane.showMessageDialog(null, "No hay sedes registradas.");
+            return;
+        }
+
+        if (cantidadActual == 0) {
+            JOptionPane.showMessageDialog(null, "No hay alumnos registrados.");
+            return;
+        }
+
+        StringBuilder sbSedes = new StringBuilder();
+        for (int i = 0; i < cantidadSedes; i++) {
+            sbSedes.append(i + 1).append(". ").append(sedes[i].getNombre()).append("\n");
+        }
+
+        int opcionSede = Integer.parseInt(JOptionPane.showInputDialog(
+                "*** Lista de Sedes ***\n\n" + sbSedes.toString() +
+                "Seleccione la sede a asignar:"));
+
+        if (opcionSede < 1 || opcionSede > cantidadSedes) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        StringBuilder sbAlumnos = new StringBuilder();
+        for (int i = 0; i < cantidadActual; i++) {
+            sbAlumnos.append(i + 1).append(". ").append(datos[i].getNombre()).append(" ").append(datos[i].getApellido()).append("\n");
+        }
+
+        int opcionAlumno = Integer.parseInt(JOptionPane.showInputDialog(
+                "*** Lista de Alumnos ***\n\n" + sbAlumnos.toString() +
+                "Seleccione el número del alumno para asignarle la sede:"));
+
+        if (opcionAlumno < 1 || opcionAlumno > cantidadActual) {
+            JOptionPane.showMessageDialog(null, "Opción no válida.");
+            return;
+        }
+
+        int indiceAlumno = opcionAlumno - 1;
+        datos[indiceAlumno].setSede(sedes[opcionSede - 1]);
+        JOptionPane.showMessageDialog(null, "Sede asignada al alumno con éxito.");
+    }
+    
+    public void asignarInstructorAutomatico(){
+        if (cantidadActual == 0) {
+        JOptionPane.showMessageDialog(null, "No hay alumnos registrados para asignar instructores.");
+        return;
+        }
+
+        for (int i = 0; i < cantidadActual; i++) {
+            Alumnos alumno = datos[i];
+            Instructores instructor = new Instructores(alumno);
+            instructor.asignarInstructor();
+            JOptionPane.showMessageDialog(null, 
+                "Instructor asignado a " + alumno.getNickname() + "\n" +
+                "Edad: " + alumno.getEdad() + "\n" +
+                "Instructor: " + instructor.nombreInstructor + "\n" +
+                "Horario: " + instructor.horario);
+        }
+      
+    }
+    
+    public void mostrarListaInstructores(){
+        String lista = "*** Lista de Instructores ***\n\n";
+        lista += "1. Gerardo Gonzalez - Horario: Mañana (Edades 5-6)\n";
+        lista += "2. Francisco Rios - Horario: Tarde (Edades 7-8)\n";
+        lista += "3. Monica Diaz - Horario: Mañana (Edades 9-10)\n";
+
+        JOptionPane.showMessageDialog(null, lista);
+    }
+    
+    public void editarInstructorYHorario(){
+       if (cantidadActual == 0) {
+        JOptionPane.showMessageDialog(null, "No hay alumnos registrados para editar.");
+        return;
+        }
+
+        String nickname = JOptionPane.showInputDialog("Ingrese el nickname del alumno:");
+        boolean encontrado = false;
+
+        for (int i = 0; i < cantidadActual; i++) {
+            if (datos[i].getNickname().equals(nickname)) {
+                encontrado = true;
+                String nuevoInstructor = JOptionPane.showInputDialog("Ingrese el nuevo nombre del instructor:");
+                String nuevoHorario = JOptionPane.showInputDialog("Ingrese el nuevo horario (Mañana/Tarde):");
+
+                JOptionPane.showMessageDialog(null, 
+                    "Instructor y horario actualizados:\n" +
+                    "Alumno: " + nickname + "\n" +
+                    "Nuevo Instructor: " + nuevoInstructor + "\n" +
+                    "Nuevo Horario: " + nuevoHorario);
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "No se encontró un alumno con ese nickname.");
+        } 
+    }
+   
 }
+
+    
+  
+
+
+    

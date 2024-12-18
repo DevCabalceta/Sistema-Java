@@ -122,7 +122,7 @@ public class Menu {
                 break;
             }
             case 4: {
-                JOptionPane.showMessageDialog(null,"Opción no implementada");
+                menuCatalogoCategoria();
                 break;
             }
             case 5: {
@@ -147,9 +147,8 @@ public class Menu {
             "*** Catálogo de Alumnos ***\n\n" +
             "1. Agregar Información adicional del Alumno\n" +
             "2. Editar información del Alumno\n" +
-            "3. Inactivar Alumno\n" +
-            "4. Asignar Sede al Alumno\n" +  
-            "5. Volver al Menú de Catálogos\n\n" +
+            "3. Inactivar Alumno\n" +  
+            "4. Volver al Menú de Catálogos\n\n" +
             "Digite la opción deseada:"));
         switch(opcion){
             case 1: {
@@ -164,11 +163,7 @@ public class Menu {
                 r.inactivarAlumno();
                 break;
             }
-            case 4: {  
-                r.asignarSedeAAlumno();
-                break;
-            }
-            case 5: {
+            case 4: {
                 JOptionPane.showMessageDialog(null, "Regresando");
                 return; 
             }
@@ -248,6 +243,46 @@ public class Menu {
             }
         }  
     }
+
+    public void menuCatalogoCategoria(){
+        while(true){
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(
+                "*** Catálogo de Categorias ***\n\n" +
+                "1. Asignar categoria\n" +
+                "2. Mostrar lista de categorias\n" +
+                "3. Editar categoria de alumno\n" +
+                "4. Activar/Inactivar categoria\n"+
+                "5. Volver al Menú de Catálogos\n\n" +
+                "Digite la opción deseada:"));
+            switch(opcion){
+                case 1:{
+                   r.asignarCategoria();
+                   break;
+                }
+                case 2:{
+                   r.mostrarListaCategorias();
+                   break;
+                }
+                case 3:{
+                   r.editarCategoriaAlumno();
+                   break;
+                }
+                case 4:{
+                   r.ActivarInactivarCategoria();
+                   return; 
+                }
+                case 5:{
+                   JOptionPane.showMessageDialog(null, "Regresando");
+                   return; 
+                }
+                default:{
+                   JOptionPane.showMessageDialog(null,"¡Opción incorrecta, digite nuevamente!");
+                   break; 
+                }
+            }
+        }  
+    }
+    
     
     public void menuCatalogoSede(){
         while(true){
@@ -256,8 +291,9 @@ public class Menu {
                 "1. Agregar Sede\n" +
                 "2. Mostrar Sedes Registradas\n" +
                 "3. Editar Información de la Sede\n" +
-                "4. Inactivar Sede\n" +
-                "5. Volver al Menú de Catálogos\n\n" +
+                "4. Mostrar Sedes Registradas\n" +
+                "5. Inactivar Sede\n" +
+                "6. Volver al Menú de Catálogos\n\n" +
                 "Digite la opción deseada:"));
 
             switch(opcion){
@@ -274,10 +310,14 @@ public class Menu {
                     break;
                 }
                 case 4: {
-                    r.inactivarSede();  
+                    r.asignarSedeAAlumno(); 
                     break;
                 }
                 case 5: {
+                    r.inactivarSede();  
+                    break;
+                }
+                case 6: {
                     JOptionPane.showMessageDialog(null, "Regresando");
                     return;
                 }
@@ -290,6 +330,32 @@ public class Menu {
     }
 
     
-    public void menuFactura(){    
+    public void menuFactura() {
+        while (true) {
+            int opcion = Integer.parseInt(JOptionPane.showInputDialog(
+                "*** Módulo 3: Facturas ***\n\n" +
+                "1. Crear Factura\n" +
+                "2. Anular Factura\n" +
+                "3. Mostrar Facturas\n" +
+                "4. Volver al Menú Principal\n\n" +
+                "Digite la opción deseada:"));
+
+            switch (opcion) {
+                case 1:
+                    r.crearFactura();
+                    break;
+                case 2:
+                    r.anularFactura();
+                    break;
+                case 3:
+                    r.mostrarFactura();
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, "Regresando al Menú Principal...");
+                    return;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción incorrecta. Intente nuevamente.");
+            }
+        }
     }
 }

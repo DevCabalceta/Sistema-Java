@@ -1,8 +1,9 @@
 package sistemaacademia;
+
 public class Categoria {
-   private String nombre;
+    private String nombre;
     private String caracteristicas;
-    private String estado; 
+    private String estado;
 
     public Categoria(String nombre, String caracteristicas, String estado) {
         this.nombre = nombre;
@@ -32,5 +33,5 @@ public class Categoria {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    } 
+    }
 }

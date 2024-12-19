@@ -125,7 +125,7 @@ public void mostrarUsuario() {
             return;
         }
 
-        // Mostrar lista de estudiantes
+        // Mostrar lista 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < cantidadActual; i++) {
             sb.append((i + 1) + ". " + datos[i].getNombre() + " " + datos[i].getApellido() + "\n");
@@ -806,7 +806,7 @@ public void mostrarUsuario() {
             JOptionPane.showMessageDialog(null, "No hay facturas registradas.");
             return;
         }
-            // Crear lista de alumnos con facturas
+            // Crear
         StringBuilder listaAlumnos = new StringBuilder("Seleccione un alumno:\n");
         int contador = 1;
 
@@ -825,7 +825,7 @@ public void mostrarUsuario() {
         String opcionStr = JOptionPane.showInputDialog(listaAlumnos);
         int opcion = Integer.parseInt(opcionStr);
         
-            // Buscar y mostrar facturas del alumno seleccionado
+            // Buscar y mostrar 
         int seleccion = 0;
         contador = 1;
         for (int i = 0; i < cantidadActual; i++) {
@@ -842,7 +842,7 @@ public void mostrarUsuario() {
          Facturas factura = facturas[seleccion];
          String mensaje = "ID Factura: " + factura.getIdFactura() +
                           "\nMonto: " + factura.getMonto() +
-                          "\nFecha: " + factura.getFechaEmision() +
+                          "\nFecha: " + factura.getFechaEmision() + 
                           "\nEstado de Pago: " + (factura.isEstadoPago() ? "Pagada" : "No Pagada") +
                           "\nAlumno: " + factura.getAlumno().getNombre();
          JOptionPane.showMessageDialog(null, mensaje);
@@ -874,7 +874,7 @@ public void mostrarUsuario() {
             return;
         }
 
-        // Mostrar facturas del alumno seleccionado
+        // Mostrar
         StringBuilder listaFacturas = new StringBuilder("Facturas del alumno:\n");
 
         for (int i = 0; i < cantidadActual; i++) {
@@ -894,7 +894,7 @@ public void mostrarUsuario() {
         String idFacturaStr = JOptionPane.showInputDialog(listaFacturas + "\nIngrese el ID de la factura a anular:");
         int idFactura = Integer.parseInt(idFacturaStr);
 
-        // Buscar y anular factura
+        // Buscar
         for (int i = 0; i < cantidadActual; i++) {
             if (facturas[i] != null && facturas[i].getIdFactura() == idFactura) {
                 facturas[i] = null;
